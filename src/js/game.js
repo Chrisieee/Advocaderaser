@@ -68,7 +68,7 @@ export class Game extends Engine {
         this.kind = "gameover"
     }
 
-    complete() {
+    complete(score) {
         if (localStorage.getItem("highscore")) {
             const highscore = localStorage.getItem("highscore")
 

@@ -122,7 +122,7 @@ export class Player extends Actor {
             }
         } else if (other instanceof Portal && other.active === true) {
             Resources.PortalSound.play(0.75)
-            this.actions.fade(0, 500).callMethod(this.scene.engine.complete())
+            this.actions.fade(0, 500).callMethod(this.scene.engine.complete(this.score))
         }
     }
 
