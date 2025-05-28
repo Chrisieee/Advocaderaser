@@ -36,6 +36,6 @@ export class Enemy extends Actor {
     }
 
     gotHit() {
-        this.kill()
+        this.actions.fade(0, 1000).callMethod(this.kill())
     }
 }

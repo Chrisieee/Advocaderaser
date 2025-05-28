@@ -1,4 +1,4 @@
-import { Actor, ScreenElement } from "excalibur"
+import { ScreenElement } from "excalibur"
 import { Scorelabel } from './scorelabel.js'
 import { CoinLabel } from './coinlabel.js'
 import { LiveLabel } from './livelabel.js'
