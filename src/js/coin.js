@@ -9,8 +9,7 @@ export class Coin extends Actor {
         super({
             x, y,
             width: w,
-            height: h,
-            collisionGroup: friendsGroup
+            height: h
         }) //Just do it! 
 
         this.#sprite = Resources.Coin.toSprite()
