@@ -69,6 +69,15 @@ export class Game extends Engine {
     }
 
     complete() {
+        if (localStorage.getItem("highscore")) {
+            const highscore = localStorage.getItem("highscore")
+
+            if (highscore < score) {
+                localStorage.setItem("highscore", score)
+            }
+        } else {
+            localStorage.setItem("highscore", score)
+        }
         this.goToScene('gameover')
         this.kind = "completed"
     }
