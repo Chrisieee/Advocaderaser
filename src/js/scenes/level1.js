@@ -44,13 +44,13 @@ export class Level1Scene extends Scene {
     const powerUp = new PowerUp()
     this.add(powerUp)
 
-    const platform = new Platform(1100, 545)
+    const platform = new Platform(1000, 525)
     this.add(platform)
 
-    const platform1 = new Platform(1500, 145)
+    const platform1 = new Platform(1700, 245)
     this.add(platform1)
 
-    const platform2 = new Platform(2500, 545)
+    const platform2 = new Platform(2500, 525)
     this.add(platform2)
 
     this.portal = new Portal(3300, 700)

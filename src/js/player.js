@@ -1,4 +1,4 @@
-import { Actor, Vector, Keys, CollisionType, DegreeOfFreedom } from "excalibur"
+import { Actor, Vector, Keys, CollisionType, DegreeOfFreedom, Axes, Buttons } from "excalibur"
 import { Resources } from './resources.js'
 import { Enemy } from './enemy.js'
 import { PowerUp } from './powerUp.js'
@@ -49,6 +49,31 @@ export class Player extends Actor {
     onPostUpdate(engine, delta) {
         let xspeed = 0
 
+        if (engine.mygamepad) {
+            if (engine.mygamepad.isButtonPressed(Buttons.Face1) && this.#isOnGround) {
+                console.log("test jump")
+                this.#jump(delta)
+            }
+            if (engine.mygamepad.getAxes(Axes.LeftStickX) < -0.5) {
+                xspeed = -500
+                this.#sprite.flipHorizontal = true
+                if (this.#powerUp === true) {
+                    this.hat.sprite.flipHorizontal = true
+                    this.hat.pos = new Vector(-15, -140)
+                }
+            } else if (engine.mygamepad.getAxes(Axes.LeftStickX) > 0.5) {
+                xspeed = 500
+                this.#sprite.flipHorizontal = false
+                if (this.#powerUp === true) {
+                    this.hat.sprite.flipHorizontal = false
+                    this.hat.pos = new Vector(15, -140)
+                }
+            }
+            if (engine.mygamepad.wasButtonPressed(Buttons.Face3)) {
+                this.#shoot()
+            }
+        }
+
         if (engine.input.keyboard.isHeld(Keys.A)) {
             xspeed = -500
             this.#sprite.flipHorizontal = true
@@ -57,7 +82,6 @@ export class Player extends Actor {
                 this.hat.pos = new Vector(-15, -140)
             }
         }
-
         if (engine.input.keyboard.isHeld(Keys.D)) {
             xspeed = 500
             this.#sprite.flipHorizontal = false
@@ -66,10 +90,9 @@ export class Player extends Actor {
                 this.hat.pos = new Vector(15, -140)
             }
         }
+        this.vel.x = xspeed
 
-        this.vel = new Vector(xspeed, 0)
-
-        if (engine.input.keyboard.wasPressed(Keys.Space)) {
+        if (engine.input.keyboard.wasPressed(Keys.Space) && this.#isOnGround) {
             this.#jump(delta)
         }
 
@@ -80,7 +103,6 @@ export class Player extends Actor {
 
     #hitSomething(e) {
         if (e.other.owner instanceof Enemy) {
-
             if (this.vel.y > 0 && this.pos.y > e.other.owner.pos.y) {
                 e.other.owner.gotHit()
                 this.addScore("enemy")
@@ -101,7 +123,7 @@ export class Player extends Actor {
         } else if (e.other.owner instanceof Ground || e.other.owner instanceof Platform) {
             this.#isOnGround = true
         } else if (e.other.owner instanceof Portal && e.other.owner.active === true) {
-            this.actions.fade(0, 1000).callMethod(this.scene.engine.complete())
+            this.actions.fade(0, 500).callMethod(this.scene.engine.complete())
         }
     }
 
@@ -113,7 +135,7 @@ export class Player extends Actor {
             this.lives--
             this.scene.ui.liveLabel.showHearts(this.lives)
             if (this.lives === 0) {
-                this.actions.fade(0, 1000).callMethod((e) => this.#death(e))
+                this.actions.fade(0, 500).callMethod(() => this.#death())
             }
         }
     }
@@ -125,11 +147,10 @@ export class Player extends Actor {
     }
 
     #jump(delta) {
-        if (this.#isOnGround) {
-            console.log(this.vel.y)
-            this.body.applyLinearImpulse(new Vector(0, -5000 * delta))
-            this.#isOnGround = false
-        }
+        console.log(this.vel.y)
+        this.body.applyLinearImpulse(new Vector(0, -150 * delta))
+        this.#isOnGround = false
+        console.log("is gesprongen")
     }
 
     #shoot() {

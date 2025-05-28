@@ -1,6 +1,6 @@
 import { Actor, Vector } from "excalibur"
 import { Resources } from './resources.js'
-import { Player } from './player.js'
+import { friendsGroup } from "./collisiongroup.js"
 
 export class Coin extends Actor {
     #sprite
@@ -9,7 +9,8 @@ export class Coin extends Actor {
         super({
             x, y,
             width: w,
-            height: h
+            height: h,
+            collisionGroup: friendsGroup
         }) //Just do it! 
 
         this.#sprite = Resources.Coin.toSprite()

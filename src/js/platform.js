@@ -9,13 +9,11 @@ export class Platform extends Actor {
 
         this.graphics.use(Resources.Platform.toSprite())
         this.body.collisionType = CollisionType.Fixed
-
-
     }
 
     onInitialize() {
         const enemy = new Enemy()
-        const coin = new Coin(180, -100, 0.5, 1, Resources.Coin.width, Resources.Coin.height)
+        const coin = new Coin(-200 + Math.random() * 200, -100, 0.5, 1, Resources.Coin.width, Resources.Coin.height)
         this.addChild(coin)
         this.addChild(enemy)
     }

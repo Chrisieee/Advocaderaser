@@ -11,7 +11,7 @@ export class UI extends ScreenElement {
     coinlabel
 
     constructor() {
-        super() //Just do it! 
+        super({ z: 1000 }) //Just do it! 
 
         this.#coinsPickedUp = 0
 

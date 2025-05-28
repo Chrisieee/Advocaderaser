@@ -16,14 +16,20 @@ export class Game extends Engine {
             suppressPlayButton: false,
             physics: {
                 solver: SolverStrategy.Arcade,
-                gravity: new Vector(0, 8000),
+                gravity: new Vector(0, 800),
             }
         })
-        this.showDebug(true)
+        //this.showDebug(true)
         this.start(ResourceLoader).then(() => this.startGame())
     }
 
     startGame() {
+        this.input.gamepads.enabled = true
+        this.input.gamepads.on('connect', (connectevent) => {
+            console.log("gamepad detected")
+            this.mygamepad = connectevent.gamepad
+        })
+
         let transitions = {
             in: new FadeInOut({ duration: 200, direction: 'in', color: Color.Black }),
             out: new FadeInOut({ duration: 200, direction: 'out', color: Color.Black })

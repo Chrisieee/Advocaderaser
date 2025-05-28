@@ -1,4 +1,4 @@
-import { Scene, Label, Font, TextAlign, Keys, Vector, FontUnit, Color } from "excalibur"
+import { Scene, Label, Font, TextAlign, Keys, Vector, FontUnit, Color, Buttons } from "excalibur"
 import { Bg } from '../background.js'
 
 export class GameOverScene extends Scene {
@@ -65,6 +65,11 @@ export class GameOverScene extends Scene {
     }
 
     onPostUpdate(engine) {
+        if (engine.mygamepad) {
+            if (engine.mygamepad.isButtonPressed(Buttons.Face1)) {
+                engine.loadLevel1()
+            }
+        }
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             engine.loadLevel1()
         }

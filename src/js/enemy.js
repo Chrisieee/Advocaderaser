@@ -6,19 +6,21 @@ export class Enemy extends Actor {
     #sprite
     #lives
 
-    constructor() {
+    constructor(x, y) {
         super({ width: Resources.Enemy.width, height: Resources.Enemy.height - 15 }) //Just do it! 
 
         this.#sprite = Resources.Enemy.toSprite()
         this.graphics.use(this.#sprite)
-        this.pos = new Vector(0, -160)
+        //this.pos = new Vector(Math.random() * 20 - 180, -160)
         this.#lives = 1
-        // this.vel = new Vector(-100, 0)
-
         this.#sprite.flipHorizontal = false
 
         this.body.collisionType = CollisionType.Passive
         this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation)
+    }
+
+    onInitialize() {
+        this.pos = new Vector(-200 + Math.random() * 200, -160)
     }
 
     onPostUpdate() {

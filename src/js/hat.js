@@ -1,5 +1,6 @@
 import { Actor, Vector, Keys, CollisionType } from "excalibur"
 import { Resources } from './resources.js'
+import { friendsGroup } from "./collisiongroup.js"
 
 export class Hat extends Actor {
     sprite
@@ -9,7 +10,8 @@ export class Hat extends Actor {
     constructor() {
         super({
             width: Resources.Hat.width,
-            height: Resources.Hat.height
+            height: Resources.Hat.height,
+            collisionGroup: friendsGroup
         }) //Just do it! 
 
         this.sprite = Resources.Hat.toSprite()
