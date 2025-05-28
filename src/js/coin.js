@@ -1,6 +1,5 @@
 import { Actor, Vector } from "excalibur"
 import { Resources } from './resources.js'
-import { friendsGroup } from "./collisiongroup.js"
 
 export class Coin extends Actor {
     #sprite

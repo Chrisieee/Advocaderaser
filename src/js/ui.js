@@ -18,7 +18,7 @@ export class UI extends ScreenElement {
         this.liveLabel = new LiveLabel()
         this.addChild(this.liveLabel)
 
-        this.#scoreLabel = new Scorelabel(860, 40)
+        this.#scoreLabel = new Scorelabel(860, 20)
         this.addChild(this.#scoreLabel)
         this.#scoreLabel.text = `Score: 0`
 

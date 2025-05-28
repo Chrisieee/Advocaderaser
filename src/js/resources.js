@@ -1,4 +1,4 @@
-import { ImageSource, Sound, Resource, Loader, ImageWrapping } from 'excalibur'
+import { ImageSource, Loader, ImageWrapping, FontSource, Sound } from 'excalibur'
 
 // voeg hier jouw eigen resources toe
 const Resources = {
@@ -11,7 +11,19 @@ const Resources = {
     Coin: new ImageSource('images/Coin.png'),
     Platform: new ImageSource('images/Platform.png'),
     Heart: new ImageSource('images/hearts.png', { wrapping: ImageWrapping.Repeat }),
-    Portal: new ImageSource('images/portal.png')
+    Portal: new ImageSource('images/portal.png'),
+
+    HeadFont: new FontSource('fonts/LondrinaShadow-Regular.ttf', 'heads'),
+    BasicFont: new FontSource('fonts/IndieFlower-Regular.ttf', 'basic'),
+
+    Level: new Sound('sounds/level.mp3'),
+    Jump: new Sound('sounds/jump.mp3'),
+    Death: new Sound('sounds/death.mp3'),
+    CoinSound: new Sound('sounds/coin.mp3'),
+    Item: new Sound('sounds/item.mp3'),
+    Shoot: new Sound('sounds/shoot.mp3'),
+    PortalSound: new Sound('sounds/portal.mp3'),
+    GameOver: new Sound('sounds/game-over.mp3')
 }
 
 

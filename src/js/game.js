@@ -1,6 +1,7 @@
 import '../css/style.css'
 import { Engine, Vector, DisplayMode, SolverStrategy, FadeInOut, Color } from "excalibur"
 import { ResourceLoader } from './resources.js'
+import { Resources } from './resources.js'
 import { StartGameScene } from './scenes/start.js'
 import { Level1Scene } from './scenes/level1.js'
 import { GameOverScene } from './scenes/gameOver.js'
@@ -44,12 +45,11 @@ export class Game extends Engine {
     }
 
     loadStart() {
-        console.log("test")
         this.goToScene('start')
     }
 
     loadLevel1() {
-        console.log("level 1")
+        Resources.Level.play()
         this.goToScene('level1')
     }
 

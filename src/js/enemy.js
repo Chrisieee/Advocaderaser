@@ -11,11 +11,10 @@ export class Enemy extends Actor {
 
         this.#sprite = Resources.Enemy.toSprite()
         this.graphics.use(this.#sprite)
-        //this.pos = new Vector(Math.random() * 20 - 180, -160)
         this.#lives = 1
         this.#sprite.flipHorizontal = false
 
-        this.body.collisionType = CollisionType.Passive
+        this.body.collisionType = CollisionType.Active
         this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation)
     }
 
@@ -38,6 +37,7 @@ export class Enemy extends Actor {
     }
 
     gotHit() {
+        Resources.Death.play()
         this.actions.fade(0, 1000).callMethod(this.kill())
     }
 }

@@ -1,5 +1,6 @@
 import { Scene, Label, Font, TextAlign, Keys, Vector, FontUnit, Color, Buttons } from "excalibur"
 import { Bg } from '../background.js'
+import { Resources } from '../resources.js'
 
 export class GameOverScene extends Scene {
 
@@ -11,11 +12,10 @@ export class GameOverScene extends Scene {
 
         this.label = new Label({
             text: 'Game Over',
-            pos: new Vector(1920 / 2, 1080 / 3 - 20),
-            font: new Font({
-                family: 'Impact',
-                size: 100,
+            pos: new Vector(1920 / 2, 1080 / 3 - 40),
+            font: Resources.HeadFont.toFont({
                 unit: FontUnit.Px,
+                size: 150,
                 textAlign: TextAlign.Center,
                 color: Color.Black
             })
@@ -26,32 +26,34 @@ export class GameOverScene extends Scene {
         const score = localStorage.getItem("highscore")
         this.highscore = new Label({
             text: `Highscore: ${score}`,
-            pos: new Vector(1920 / 2, 1080 / 2 - 60),
-            font: new Font({
-                family: 'Impact',
-                size: 40,
+            pos: new Vector(1920 / 2, 1080 / 2 - 70),
+            font: Resources.HeadFont.toFont({
                 unit: FontUnit.Px,
+                size: 75,
                 textAlign: TextAlign.Center,
                 color: Color.Black
             })
         })
         this.add(this.highscore)
 
-        const label1 = new Label({
+        this.label1 = new Label({
             text: 'Druk op enter om opnieuw te beginnen',
             pos: new Vector(1920 / 2, 1080 / 2 + 50),
-            font: new Font({
-                family: 'Arial',
-                size: 40,
+            font: Resources.BasicFont.toFont({
+                size: 50,
                 unit: FontUnit.Px,
                 textAlign: TextAlign.Center,
                 color: Color.Black
             })
         })
-        this.add(label1)
+        this.add(this.label1)
     }
 
-    onInitialize() {
+    onInitialize(engine) {
+        if (engine.mygamepad) {
+            this.label1.text = 'Druk op kruisje om door te gaan'
+        }
+
         const score = localStorage.getItem("highscore")
         this.highscore.text = `Highscore: ${score}`
 

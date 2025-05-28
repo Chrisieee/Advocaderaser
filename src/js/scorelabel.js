@@ -1,4 +1,5 @@
-import { Actor, Vector, Label, Font, FontUnit, Color } from "excalibur"
+import { Vector, Label, FontUnit, Color } from "excalibur"
+import { Resources } from './resources.js'
 
 export class Scorelabel extends Label {
 
@@ -7,10 +8,9 @@ export class Scorelabel extends Label {
         super({
             text: 'Score: 0',
             pos: new Vector(x, y),
-            font: new Font({
-                family: 'Impact',
-                size: 54,
+            font: Resources.HeadFont.toFont({
                 unit: FontUnit.Px,
+                size: 100,
                 color: Color.Black
             })
         })
