@@ -50,7 +50,7 @@ export class GameOverScene extends Scene {
                 color: Color.Black
             })
         })
-        this.add(this.label1)
+        this.add(this.#label1)
     }
 
     onInitialize(engine) {
