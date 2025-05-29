@@ -4,14 +4,12 @@ import { Resources } from './resources.js'
 export class Enemy extends Actor {
 
     #sprite
-    #lives
 
     constructor(x, y) {
         super({ width: Resources.Enemy.width, height: Resources.Enemy.height - 15 }) //Just do it! 
 
         this.#sprite = Resources.Enemy.toSprite()
         this.graphics.use(this.#sprite)
-        this.#lives = 1
         this.#sprite.flipHorizontal = false
 
         this.body.collisionType = CollisionType.Active

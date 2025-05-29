@@ -10,6 +10,10 @@ import { Portal } from '../portal.js'
 
 export class Level1Scene extends Scene {
 
+  portal
+  player
+  ui
+
   constructor(engine) {
     super()
   }

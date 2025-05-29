@@ -1,8 +1,10 @@
-import { Scene, Label, Font, TextAlign, Keys, Vector, FontUnit, Color, Buttons } from "excalibur"
+import { Scene, Label, TextAlign, Keys, Vector, FontUnit, Color, Buttons } from "excalibur"
 import { Bg } from '../background.js'
 import { Resources } from '../resources.js'
 
 export class StartGameScene extends Scene {
+
+    #label1
 
     constructor(engine) {
         super()
@@ -22,7 +24,7 @@ export class StartGameScene extends Scene {
         })
         this.add(label)
 
-        this.label1 = new Label({
+        this.#label1 = new Label({
             text: 'Druk op enter om door te gaan',
             pos: new Vector(1920 / 2, 1080 / 2 + 50),
             font: Resources.BasicFont.toFont({
@@ -32,12 +34,12 @@ export class StartGameScene extends Scene {
                 color: Color.Black
             })
         })
-        this.add(this.label1)
+        this.add(this.#label1)
     }
 
     onInitialize(engine) {
         if (engine.mygamepad) {
-            this.label1.text = 'Druk op kruisje om door te gaan'
+            this.#label1.text = 'Druk op kruisje om door te gaan'
         }
     }
 

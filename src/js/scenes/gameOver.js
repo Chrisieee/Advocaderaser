@@ -4,13 +4,17 @@ import { Resources } from '../resources.js'
 
 export class GameOverScene extends Scene {
 
+    #label
+    #label1
+    #highscore
+
     constructor() {
         super()
 
         const bg = new Bg()
         this.add(bg)
 
-        this.label = new Label({
+        this.#label = new Label({
             text: 'Game Over',
             pos: new Vector(1920 / 2, 1080 / 3 - 40),
             font: Resources.HeadFont.toFont({
@@ -21,10 +25,10 @@ export class GameOverScene extends Scene {
             })
         })
 
-        this.add(this.label)
+        this.add(this.#label)
 
         const score = localStorage.getItem("highscore")
-        this.highscore = new Label({
+        this.#highscore = new Label({
             text: `Highscore: ${score}`,
             pos: new Vector(1920 / 2, 1080 / 2 - 70),
             font: Resources.HeadFont.toFont({
@@ -34,9 +38,9 @@ export class GameOverScene extends Scene {
                 color: Color.Black
             })
         })
-        this.add(this.highscore)
+        this.add(this.#highscore)
 
-        this.label1 = new Label({
+        this.#label1 = new Label({
             text: 'Druk op enter om opnieuw te beginnen',
             pos: new Vector(1920 / 2, 1080 / 2 + 50),
             font: Resources.BasicFont.toFont({
@@ -51,18 +55,18 @@ export class GameOverScene extends Scene {
 
     onInitialize(engine) {
         if (engine.mygamepad) {
-            this.label1.text = 'Druk op kruisje om door te gaan'
+            this.#label1.text = 'Druk op kruisje om door te gaan'
         }
 
         const score = localStorage.getItem("highscore")
-        this.highscore.text = `Highscore: ${score}`
+        this.#highscore.text = `Highscore: ${score}`
 
         if (this.engine.kind === "gameover") {
-            this.label.text = 'Game Over'
+            this.#label.text = 'Game Over'
         }
 
         if (this.engine.kind === "completed") {
-            this.label.text = 'Level completed!'
+            this.#label.text = 'Level completed!'
         }
     }
 
