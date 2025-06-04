@@ -14,7 +14,7 @@ export class Game extends Engine {
             height: 1080,
             maxFps: 60,
             displayMode: DisplayMode.FitScreen,
-            suppressPlayButton: false,
+            suppressPlayButton: true,
             physics: {
                 solver: SolverStrategy.Arcade,
                 gravity: new Vector(0, 800),
@@ -63,9 +63,8 @@ export class Game extends Engine {
         } else {
             localStorage.setItem("highscore", score)
         }
-
-        this.goToScene('gameover')
         this.kind = "gameover"
+        this.goToScene('gameover')
     }
 
     complete(score) {
@@ -78,8 +77,8 @@ export class Game extends Engine {
         } else {
             localStorage.setItem("highscore", score)
         }
-        this.goToScene('gameover')
         this.kind = "completed"
+        this.goToScene('gameover')
     }
 }
 
