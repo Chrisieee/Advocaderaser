@@ -5,7 +5,11 @@ import { Coin } from './coin.js'
 
 export class Platform extends Actor {
     constructor(x, y) {
-        super({ x, y, width: Resources.Platform.width, height: Resources.Platform.height }) //Just do it! 
+        super({
+            x, y,
+            width: Resources.Platform.width,
+            height: Resources.Platform.height
+        }) //Just do it! 
 
         this.graphics.use(Resources.Platform.toSprite())
         this.body.collisionType = CollisionType.Fixed
